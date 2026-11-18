@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja & Pré-Venda | Miraculous Strong Fighter</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Russo One"', 'sans-serif'],
+                        gamer: ['"Chakra Petch"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        miraculous: {
+                            bg: '#09090b',
+                            card: '#121216',
+                            border: '#27272a',
+                            red: '#e61919',
+                            bright: '#ff2a2a',
+                            darkRed: '#7f0909',
+                            gold: '#f59e0b',
+                            akuma: '#8b5cf6'
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { filter: 'drop-shadow(0 0 18px rgba(230, 25, 25, 0.45))' },
+                            '50%': { filter: 'drop-shadow(0 0 30px rgba(255, 42, 42, 0.85))' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #09090b;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .ladybug-dots-bg {
+            background-image: radial-gradient(rgba(230, 25, 25, 0.14) 2px, transparent 2px),
+                              radial-gradient(rgba(230, 25, 25, 0.08) 2px, #09090b 2px);
+            background-size: 44px 44px;
+            background-position: 0 0, 22px 22px;
+        }
+
+        .logo-blend {
+            mix-blend-mode: lighten;
+            user-select: none;
+        }
+
+        .btn-miraculous {
+            background: linear-gradient(135deg, #ff2a2a 0%, #b91c1c 100%);
+            box-shadow: 0 8px 25px -5px rgba(230, 25, 25, 0.6);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-miraculous:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 12px 32px -4px rgba(255, 42, 42, 0.85);
+            background: linear-gradient(135deg, #ff3b3b 0%, #dc2626 100%);
+        }
+        .btn-miraculous:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+            box-shadow: 0 8px 25px -5px rgba(245, 158, 11, 0.45);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 12px 32px -4px rgba(245, 158, 11, 0.75);
+        }
+
+        .glass-panel {
+            background: rgba(18, 18, 22, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .platform-tab.active {
+            background: linear-gradient(135deg, rgba(230, 25, 25, 0.25) 0%, rgba(127, 9, 9, 0.35) 100%);
+            border-color: #ff2a2a;
+            box-shadow: 0 0 25px rgba(230, 25, 25, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased ladybug-dots-bg selection:bg-miraculous-red selection:text-white min-h-screen flex flex-col">
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="relative h-12 flex items-center">
+                    <img 
+                        src="Novo Projeto (3) (1).jpg" 
+                        alt="Miraculous Strong Fighter Logo" 
+                        class="h-full w-auto object-contain logo-blend transition-transform duration-300 group-hover:scale-105"
+                        onerror="this.style.display='none'; document.getElementById('nav-fallback-logo').classList.remove('hidden');"
+                    >
+                    <div id="nav-fallback-logo" class="hidden flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-miraculous-red border-2 border-black relative flex items-center justify-center shadow-lg shadow-red-600/40">
+                            <span class="w-1.5 h-1.5 bg-black rounded-full absolute top-1.5 left-2"></span>
+                            <span class="w-2 h-2 bg-black rounded-full"></span>
+                            <span class="w-1.5 h-1.5 bg-black rounded-full absolute bottom-1.5 right-2"></span>
+                        </span>
+                        <div class="leading-none">
+                            <span class="font-display text-lg text-white tracking-wide block">MIRACULOUS</span>
+                            <span class="font-display text-xs text-miraculous-bright tracking-widest uppercase block">STRONG FIGHTER</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-gamer uppercase tracking-wider text-zinc-300">
+                    <i class="fa-solid fa-shield-halved text-miraculous-bright"></i> Loja Oficial Digital
+                </span>
+                <a href="index.html" class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-sm font-bold text-zinc-200 hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-miraculous-bright"></i>
+                    <span>Voltar ao Jogo</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        
+        <!-- Cabeçalho da Loja -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/60 border border-miraculous-red/40 text-red-200 text-xs font-bold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-bolt text-amber-400"></i>
+                <span>Acesso Antecipado & Reserva Oficial</span>
+            </div>
+            <h1 class="font-display text-3xl sm:text-5xl text-white uppercase tracking-wide mb-4">
+                Escolha sua <span class="text-miraculous-bright">Plataforma</span> e Edição
+            </h1>
+            <p class="text-zinc-400 text-base sm:text-lg">
+                Os valores e lotes disponíveis da Demo refletem as taxas de distribuição e disponibilidade de chaves digitais de cada ecossistema.
+            </p>
+        </div>
+
+        <!-- ==================== SELETOR DE PLATAFORMAS ==================== -->
+        <section class="mb-12">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="font-gamer text-sm uppercase tracking-widest text-zinc-400 font-bold">
+                    1. Selecione sua Plataforma:
+                </h2>
+                <span id="platform-market-note" class="text-xs text-zinc-400 font-medium hidden sm:inline">
+                    <!-- Preenchido via JS -->
+                </span>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="platform-selector">
+                <!-- PC (Steam) -->
+                <button onclick="selectPlatform('pc')" data-platform="pc" class="platform-tab active glass-panel p-4 sm:p-5 rounded-2xl text-left transition-all hover:border-zinc-600 flex flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <i class="fa-brands fa-steam text-2xl sm:text-3xl text-zinc-100"></i>
+                        <span class="text-[11px] font-gamer uppercase px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">Preço Base</span>
+                    </div>
+                    <div>
+                        <div class="font-display text-base sm:text-lg text-white">PC (Steam)</div>
+                        <div class="text-xs text-zinc-400 mt-0.5">Chave Digital Global</div>
+                    </div>
+                </button>
+
+                <!-- Xbox Series X|S -->
+                <button onclick="selectPlatform('xbox')" data-platform="xbox" class="platform-tab glass-panel p-4 sm:p-5 rounded-2xl text-left transition-all hover:border-zinc-600 flex flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <i class="fa-brands fa-xbox text-2xl sm:text-3xl text-emerald-400"></i>
+                        <span class="text-[11px] font-gamer uppercase px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">+Taxa Console</span>
+                    </div>
+                    <div>
+                        <div class="font-display text-base sm:text-lg text-white">Xbox Series X|S</div>
+                        <div class="text-xs text-zinc-400 mt-0.5">Microsoft Store</div>
+                    </div>
+                </button>
+
+                <!-- PlayStation 5 -->
+                <button onclick="selectPlatform('ps5')" data-platform="ps5" class="platform-tab glass-panel p-4 sm:p-5 rounded-2xl text-left transition-all hover:border-zinc-600 flex flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <i class="fa-brands fa-playstation text-2xl sm:text-3xl text-blue-400"></i>
+                        <span class="text-[11px] font-gamer uppercase px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">Alta Demanda</span>
+                    </div>
+                    <div>
+                        <div class="font-display text-base sm:text-lg text-white">PlayStation 5</div>
+                        <div class="text-xs text-zinc-400 mt-0.5">PSN Store Digital</div>
+                    </div>
+                </button>
+
+                <!-- Nintendo Switch -->
+                <button onclick="selectPlatform('switch')" data-platform="switch" class="platform-tab glass-panel p-4 sm:p-5 rounded-2xl text-left transition-all hover:border-zinc-600 flex flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <i class="fa-solid fa-gamepad text-2xl sm:text-3xl text-red-500"></i>
+                        <span class="text-[11px] font-gamer uppercase px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/40">Lote Crítico</span>
+                    </div>
+                    <div>
+                        <div class="font-display text-base sm:text-lg text-white">Nintendo Switch</div>
+                        <div class="text-xs text-zinc-400 mt-0.5">Nintendo eShop</div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== EDIÇÕES DISPONÍVEIS ==================== -->
+        <section class="mb-14">
+            <h2 class="font-gamer text-sm uppercase tracking-widest text-zinc-400 font-bold mb-4">
+                2. Escolha a Edição para <span id="selected-platform-title" class="text-white">PC (Steam)</span>:
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- CARD 1: EDIÇÃO DEMO (SOMENTE MODO HISTÓRIA) -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-zinc-800 hover:border-miraculous-red/60 transition-all flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-miraculous-red/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div>
+                        <!-- Header do Card -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-miraculous-red/20 border border-miraculous-red/50 text-miraculous-bright font-gamer text-xs font-bold uppercase tracking-wider">
+                                Disponível Agora • Lote Limitado
+                            </span>
+                            <span id="demo-platform-badge" class="text-xs font-bold text-zinc-400 uppercase tracking-wider">
+                                PC (Steam)
+                            </span>
+                        </div>
+
+                        <h3 class="font-display text-2xl sm:text-3xl text-white uppercase tracking-wide mb-2">
+                            Edição Demo — Prólogo de Paris
+                        </h3>
+                        <p class="text-zinc-400 text-sm mb-6">
+                            Experimente os primeiros capítulos da campanha oficial antes do lançamento mundial.
+                        </p>
+
+                        <!-- Bloco de Preço -->
+                        <div class="p-4 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 mb-6">
+                            <div class="flex items-baseline justify-between">
+                                <div>
+                                    <span class="text-xs text-zinc-400 uppercase font-bold block">Valor na Plataforma</span>
+                                    <div class="flex items-baseline gap-2 mt-1">
+                                        <span id="demo-price" class="font-display text-4xl sm:text-5xl text-white">R$ 15,99</span>
+                                        <span id="demo-price-diff" class="text-xs font-semibold text-emerald-400">Preço base Steam</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[11px] text-zinc-500 block">Pagamento único</span>
+                                    <span class="text-xs font-bold text-zinc-300">Acesso Imediato</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Indicador de Escassez da Demo -->
+                        <div class="p-4 rounded-2xl bg-red-950/25 border border-miraculous-red/30 mb-6">
+                            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider mb-2">
+                                <span class="text-red-300 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-miraculous-bright animate-ping"></span>
+                                    Chaves Demo Restantes
+                                </span>
+                                <span id="demo-stock-count" class="font-gamer text-sm text-white">148 / 500</span>
+                            </div>
+                            <!-- Barra de Progresso -->
+                            <div class="w-full h-2.5 bg-zinc-900 rounded-full overflow-hidden border border-zinc-800">
+                                <div id="demo-stock-bar" class="h-full bg-gradient-to-r from-miraculous-red to-amber-500 transition-all duration-500" style="width: 28%"></div>
+                            </div>
+                            <p id="demo-scarcity-reason" class="text-xs text-zinc-400 mt-2.5 leading-relaxed">
+                                <!-- Motivo realista da escassez na plataforma -->
+                            </p>
+                        </div>
+
+                        <!-- Conteúdo Incluso -->
+                        <div class="space-y-3 mb-8">
+                            <div class="text-xs font-gamer uppercase tracking-wider text-zinc-400 font-bold">O que está incluído:</div>
+                            <ul class="space-y-2.5 text-sm text-zinc-200">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-miraculous-bright"></i>
+                                    <span><strong>Somente Modo História</strong> (Atos 1 e 2 — Batalha contra Tormenta)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-miraculous-bright"></i>
+                                    <span>4 Lutadores jogáveis (Ladybug, Cat Noir, Rena Rouge e Carapace)</span>
+                                </li>
+                                <li class="flex items-center gap-3 text-zinc-500">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    <span>Modo PvP Online e Ranqueado indisponíveis nesta edição</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Botão Comprar Demo -->
+                    <button id="btn-buy-demo" onclick="processPurchase('demo')" class="w-full py-4 px-6 rounded-2xl btn-miraculous font-display text-base sm:text-lg uppercase tracking-wider text-white flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="btn-buy-demo-text">Comprar Edição Demo</span>
+                    </button>
+                </div>
+
+                <!-- CARD 2: JOGO COMPLETO (PRÉ-VENDA 25/10/2027) -->
+                <div class="glass-panel rounded-3xl p-6 sm:p-8 border-2 border-amber-500/40 hover:border-amber-400 transition-all flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div>
+                        <!-- Header do Card -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/50 text-amber-300 font-gamer text-xs font-bold uppercase tracking-wider">
+                                <i class="fa-solid fa-calendar-days mr-1"></i> Lançamento: 25/10/2027
+                            </span>
+                            <span id="full-platform-badge" class="text-xs font-bold text-zinc-400 uppercase tracking-wider">
+                                PC (Steam)
+                            </span>
+                        </div>
+
+                        <h3 class="font-display text-2xl sm:text-3xl text-white uppercase tracking-wide mb-2">
+                            Jogo Completo — Edição Definitiva
+                        </h3>
+                        <p class="text-zinc-400 text-sm mb-6">
+                            Garanta sua cópia digital antecipada com acesso completo à campanha e arenas competitivas globais.
+                        </p>
+
+                        <!-- Bloco de Preço -->
+                        <div class="p-4 rounded-2xl bg-zinc-950/90 border border-zinc-800/90 mb-6">
+                            <div class="flex items-baseline justify-between">
+                                <div>
+                                    <span class="text-xs text-zinc-400 uppercase font-bold block">Valor de Pré-Venda</span>
+                                    <div class="flex items-baseline gap-2 mt-1">
+                                        <span id="full-price" class="font-display text-4xl sm:text-5xl text-amber-400">R$ 39,99</span>
+                                        <span id="full-price-diff" class="text-xs font-semibold text-emerald-400">Preço base Steam</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[11px] text-amber-300/80 block font-semibold">Pré-Venda Digital</span>
+                                    <span class="text-xs font-bold text-zinc-300">Estoque Ilimitado</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Banner de Data de Lançamento -->
+                        <div class="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/30 mb-6 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex flex-col items-center justify-center shrink-0 text-amber-300">
+                                <span class="font-display text-sm leading-none">25</span>
+                                <span class="font-gamer text-[10px] uppercase">OUT/27</span>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-amber-300">Lançamento Oficial Programado</div>
+                                <p class="text-xs text-zinc-300 mt-0.5">
+                                    Download automático liberado em <strong>25 de Outubro de 2027</strong> às 00:00 (Horário de Brasília).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Conteúdo Incluso -->
+                        <div class="space-y-3 mb-8">
+                            <div class="text-xs font-gamer uppercase tracking-wider text-zinc-400 font-bold">O que está incluído:</div>
+                            <ul class="space-y-2.5 text-sm text-zinc-200">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-amber-400"></i>
+                                    <span><strong>Modo História Completo</strong> (Todos os 12 Capítulos + Chefes Akumatizados)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-amber-400"></i>
+                                    <span><strong>Modo PvP Online</strong> (1v1, 2v2 em Equipe, Salas Privadas e Ranked)</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-amber-400"></i>
+                                    <span>Elenco completo com 18+ Portadores de Miraculous e Vilões</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-gift text-miraculous-bright"></i>
+                                    <span><strong>Bônus Pré-Venda:</strong> Traje Cósmico Ladybug & Cat Noir</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Botão Comprar Jogo Completo -->
+                    <button onclick="processPurchase('full')" class="w-full py-4 px-6 rounded-2xl btn-gold font-display text-base sm:text-lg uppercase tracking-wider text-zinc-950 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-crown"></i>
+                        <span id="btn-buy-full-text">Garantir Pré-Venda</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== TABELA COMPARATIVA DE PREÇOS REAIS POR PLATAFORMA ==================== -->
+        <section class="glass-panel rounded-3xl p-6 sm:p-8 border border-zinc-800">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                <div>
+                    <h3 class="font-display text-xl text-white uppercase tracking-wide">
+                        Comparativo de Mercado & Disponibilidade por Plataforma
+                    </h3>
+                    <p class="text-xs sm:text-sm text-zinc-400 mt-1">
+                        Baseado na estrutura real de preços e políticas de distribuição digital de cada loja.
+                    </p>
+                </div>
+                <span class="text-xs font-gamer uppercase px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 text-zinc-300 self-start">
+                    Valores em Real (BRL)
+                </span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-zinc-800 text-xs font-gamer uppercase tracking-wider text-zinc-400">
+                            <th class="py-3.5 px-4">Plataforma</th>
+                            <th class="py-3.5 px-4">Edição Demo</th>
+                            <th class="py-3.5 px-4">Jogo Completo (2027)</th>
+                            <th class="py-3.5 px-4">Chaves Demo Restantes</th>
+                            <th class="py-3.5 px-4">Motivo da Variação (Mercado Real)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-table-body" class="divide-y divide-zinc-800/70 text-sm">
+                        <!-- Preenchido dinamicamente pelo JS para refletir compras em tempo real -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== MODAL DE CONFIRMAÇÃO DE COMPRA ==================== -->
+    <div id="purchase-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-miraculous-red/50 shadow-2xl shadow-red-950/60 relative">
+            
+            <!-- Ícone de Sucesso -->
+            <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-5 shadow-lg shadow-emerald-950/50">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="text-center mb-6">
+                <span class="text-xs font-gamer uppercase tracking-widest text-emerald-400 font-bold">Compra Aprovada</span>
+                <h3 class="font-display text-2xl sm:text-3xl text-white uppercase mt-1">Pedido Confirmado!</h3>
+                <p id="modal-subtitle" class="text-sm text-zinc-400 mt-1">Sua chave digital foi reservada para sua conta.</p>
+            </div>
+
+            <!-- Recibo Detalhado -->
+            <div class="bg-zinc-950/90 rounded-2xl p-4 sm:p-5 border border-zinc-800 space-y-3 text-sm mb-6">
+                <div class="flex justify-between items-center pb-2.5 border-b border-zinc-800/80">
+                    <span class="text-zinc-400">Nº do Pedido:</span>
+                    <span id="receipt-order-id" class="font-gamer font-bold text-white">#MSF-84920</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-zinc-400">Plataforma:</span>
+                    <span id="receipt-platform" class="font-bold text-white">PC (Steam)</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-zinc-400">Edição Selecionada:</span>
+                    <span id="receipt-edition" class="font-bold text-miraculous-bright">Edição Demo</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-zinc-400">Disponibilidade:</span>
+                    <span id="receipt-availability" class="font-semibold text-zinc-200">Acesso Imediato</span>
+                </div>
+                <div class="flex justify-between items-center pt-2.5 border-t border-zinc-800/80">
+                    <span class="text-zinc-300 font-bold">Total Pago:</span>
+                    <span id="receipt-total" class="font-display text-xl text-emerald-400">R$ 15,99</span>
+                </div>
+            </div>
+
+            <!-- Código de Ativação -->
+            <div class="p-3.5 rounded-xl bg-zinc-900 border border-dashed border-zinc-700 text-center mb-6">
+                <span class="text-[11px] uppercase tracking-widest text-zinc-400 block mb-1">Código de Resgate Digital</span>
+                <code id="receipt-key" class="font-gamer text-base sm:text-lg font-bold text-amber-300 tracking-widest select-all">
+                    LADY-BUG2-026S-TEAM
+                </code>
+            </div>
+
+            <button onclick="closePurchaseModal()" class="w-full py-3.5 rounded-xl btn-miraculous font-display text-sm uppercase tracking-wider text-white">
+                Concluir e Voltar à Loja
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        const platformData = {
+            pc: {
+                id: 'pc',
+                name: 'PC (Steam)',
+                icon: 'fa-brands fa-steam text-zinc-200',
+                demoPrice: 15.99,
+                fullPrice: 39.99,
+                priceDiffLabel: 'Preço base Steam (menor taxa)',
+                marketNote: 'Steam possui menor taxa de distribuição e maior lote de chaves Early Access.',
+                demoStock: 148,
+                demoMaxStock: 500,
+                scarcityReason: 'Alta disponibilidade: A Valve permite distribuição flexível de chaves de Acesso Antecipado para PC, mas o lote promocional inicial já atingiu 70% de resgates.',
+                tableReason: 'Menor comissão de loja (30% regressivo) e distribuição direta de keys.'
+            },
+            xbox: {
+                id: 'xbox',
+                name: 'Xbox Series X|S',
+                icon: 'fa-brands fa-xbox text-emerald-400',
+                demoPrice: 18.99,
+                fullPrice: 44.99,
+                priceDiffLabel: '+R$ 3,00 / +R$ 5,00 (Taxa Console)',
+                marketNote: 'Microsoft Store aplica ajuste padrão de certificação de consoles.',
+                demoStock: 64,
+                demoMaxStock: 250,
+                scarcityReason: 'Estoque moderado: Lote limitado pelo programa Xbox Insider / Game Preview antes da abertura geral dos servidores.',
+                tableReason: 'Repasse de certificação de console e conversão regional da Microsoft Store.'
+            },
+            ps5: {
+                id: 'ps5',
+                name: 'PlayStation 5',
+                icon: 'fa-brands fa-playstation text-blue-400',
+                demoPrice: 21.90,
+                fullPrice: 49.90,
+                priceDiffLabel: '+R$ 5,91 / +R$ 9,91 (Padrão PSN)',
+                marketNote: 'PlayStation Store pratica faixas de preço arredondadas e limites rígidos de códigos promocionais.',
+                demoStock: 23,
+                demoMaxStock: 200,
+                scarcityReason: 'Escassez alta: A Sony impõe cotas rígidas de geração de vouchers de Beta/Demo fechada por região na PSN Brasil.',
+                tableReason: 'Tabela de preços fechada da PSN e cota restrita de vouchers regionais.'
+            },
+            switch: {
+                id: 'switch',
+                name: 'Nintendo Switch',
+                icon: 'fa-solid fa-gamepad text-red-500',
+                demoPrice: 24.99,
+                fullPrice: 54.99,
+                priceDiffLabel: '+R$ 9,00 / +R$ 15,00 (Taxa Nintendo)',
+                marketNote: 'Nintendo eShop possui maior custo de licenciamento e paridade com mídia física.',
+                demoStock: 7,
+                demoMaxStock: 150,
+                scarcityReason: 'Lote crítico (últimas unidades): A Nintendo limita severamente códigos de teste pago na eShop e exige paridade de preço com cartuchos.',
+                tableReason: 'Royalties elevados da Nintendo e política de paridade de preço eShop/físico.'
+            }
+        };
+
+        let currentPlatform = 'pc';
+
+        function formatBRL(value) {
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function selectPlatform(platformKey) {
+            currentPlatform = platformKey;
+            const data = platformData[platformKey];
+
+            document.querySelectorAll('.platform-tab').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.platform === platformKey) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.getElementById('selected-platform-title').textContent = data.name;
+            document.getElementById('demo-platform-badge').textContent = data.name;
+            document.getElementById('full-platform-badge').textContent = data.name;
+            document.getElementById('platform-market-note').textContent = data.marketNote;
+
+            document.getElementById('demo-price').textContent = formatBRL(data.demoPrice);
+            document.getElementById('demo-price-diff').textContent = data.priceDiffLabel;
+            document.getElementById('full-price').textContent = formatBRL(data.fullPrice);
+            document.getElementById('full-price-diff').textContent = data.priceDiffLabel;
+            document.getElementById('btn-buy-full-text').textContent = `Garantir Pré-Venda (${formatBRL(data.fullPrice)})`;
+
+            updateDemoStockUI(data);
+        }
+
+        function updateDemoStockUI(data) {
+            const percentage = Math.max(0, Math.round((data.demoStock / data.demoMaxStock) * 100));
+            document.getElementById('demo-stock-count').textContent = `${data.demoStock} / ${data.demoMaxStock} disponíveis`;
+            document.getElementById('demo-stock-bar').style.width = `${percentage}%`;
+            document.getElementById('demo-scarcity-reason').textContent = data.scarcityReason;
+
+            const btnDemo = document.getElementById('btn-buy-demo');
+            const btnDemoText = document.getElementById('btn-buy-demo-text');
+
+            if (data.demoStock <= 0) {
+                btnDemo.disabled = true;
+                btnDemoText.textContent = 'Lote Demo Esgotado nesta Plataforma';
+            } else {
+                btnDemo.disabled = false;
+                btnDemoText.textContent = `Comprar Edição Demo (${formatBRL(data.demoPrice)})`;
+            }
+        }
+
+        function renderComparisonTable() {
+            const tbody = document.getElementById('comparison-table-body');
+            tbody.innerHTML = '';
+
+            Object.values(platformData).forEach(plat => {
+                const stockBadgeColor = plat.demoStock <= 10 
+                    ? 'bg-red-500/20 text-red-300 border-red-500/40' 
+                    : plat.demoStock <= 30 
+                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' 
+                        : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
+
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-zinc-900/60 transition-colors cursor-pointer';
+                row.onclick = () => selectPlatform(plat.id);
+                row.innerHTML = `
+                    <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
+                        <i class="${plat.icon} text-lg"></i>
+                        <span>${plat.name}</span>
+                    </td>
+                    <td class="py-4 px-4 font-gamer font-bold text-zinc-200">${formatBRL(plat.demoPrice)}</td>
+                    <td class="py-4 px-4 font-gamer font-bold text-amber-400">${formatBRL(plat.fullPrice)}</td>
+                    <td class="py-4 px-4">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-gamer font-bold border ${stockBadgeColor}">
+                            ${plat.demoStock > 0 ? `${plat.demoStock} unidades` : 'ESGOTADO'}
+                        </span>
+                    </td>
+                    <td class="py-4 px-4 text-xs text-zinc-400">${plat.tableReason}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function generateActivationKey(platformId, editionType) {
+            const prefix = editionType === 'demo' ? 'DEMO' : 'FULL';
+            const platCode = platformId.toUpperCase().padEnd(4, 'X');
+            const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase();
+            return `MSF-${prefix}-${platCode}-${randomPart}`;
+        }
+
+        function processPurchase(editionType) {
+            const data = platformData[currentPlatform];
+            const isDemo = editionType === 'demo';
+
+            if (isDemo) {
+                if (data.demoStock <= 0) return;
+                data.demoStock -= 1;
+                updateDemoStockUI(data);
+                renderComparisonTable();
+            }
+
+            const orderId = `#MSF-${Math.floor(10000 + Math.random() * 90000)}`;
+            document.getElementById('receipt-order-id').textContent = orderId;
+            document.getElementById('receipt-platform').textContent = data.name;
+            document.getElementById('receipt-edition').textContent = isDemo 
+                ? 'Edição Demo (Somente Modo História)' 
+                : 'Jogo Completo (Modo História + PvP Online)';
+            document.getElementById('receipt-availability').textContent = isDemo 
+                ? 'Download Imediato Liberado' 
+                : 'Pré-Venda — Liberação em 25/10/2027';
+            document.getElementById('receipt-total').textContent = formatBRL(isDemo ? data.demoPrice : data.fullPrice);
+            document.getElementById('receipt-key').textContent = generateActivationKey(currentPlatform, editionType);
+            document.getElementById('modal-subtitle').textContent = isDemo
+                ? `Restam agora ${data.demoStock} chaves da Demo para ${data.name}.`
+                : `Sua reserva para o lançamento de 25/10/2027 no ${data.name} está garantida.`;
+
+            const modal = document.getElementById('purchase-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePurchaseModal() {
+            const modal = document.getElementById('purchase-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            selectPlatform('pc');
+            renderComparisonTable();
+        });
+    </script>
+</body>
+</html>
